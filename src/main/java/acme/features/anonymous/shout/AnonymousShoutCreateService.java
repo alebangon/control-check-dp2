@@ -65,7 +65,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "author", "text", "info", "infoId");
+		request.unbind(entity, model, "author", "text", "info", "infoId.information", "infoId.money.currency", "infoId.money.amount", "infoId.moment", "infoId.flag" );
 	}
 
 	@Override
@@ -112,6 +112,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
+		entity.getInfoId().setMoment(moment);
 		this.infoRepository.save(entity.getInfoId());
 		
 		this.repository.save(entity);
