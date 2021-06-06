@@ -20,6 +20,9 @@
 	<acme:list-column code="anonymous.shout.list.label.author" path="author"/>
 	<acme:list-column code="anonymous.shout.list.label.text" path="text"/>
 	<acme:list-column code="anonymous.shout.list.label.infoId" path="infoId.information"/>
+	<acme:list-column code="anonymous.shout.list.label.infoId" path="infoId.money.amount"/>
+	<acme:list-column code="anonymous.shout.list.label.infoId" path="infoId.money.currency"/>
+	<acme:list-column code="anonymous.shout.list.label.infoId" path="infoId.flag"/>
 </acme:list>
 
 
