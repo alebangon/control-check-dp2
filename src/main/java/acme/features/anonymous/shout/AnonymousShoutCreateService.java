@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import acme.entities.shouts.Shout;
 import acme.entities.words.Word;
 import acme.features.administrator.spam.AdministratorSpamShowService;
+import acme.features.anonymous.information.AnonymousInformationRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -37,6 +38,8 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	protected AnonymousShoutRepository repository;
 	@Autowired
 	protected AdministratorSpamShowService spamService;
+	@Autowired
+	protected AnonymousInformationRepository infoRepository;
 
 	// AbstractCreateService<Administrator, Shout> interface --------------
 
@@ -62,7 +65,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "author", "text", "info");
+		request.unbind(entity, model, "author", "text", "info", "infoId");
 	}
 
 	@Override
@@ -75,10 +78,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		moment = new Date(System.currentTimeMillis() - 1);
 
 		result = new Shout();
-		result.setAuthor("John Doe");
-		result.setText("Lorem ipsum!");
 		result.setMoment(moment);
-		result.setInfo("http://example.org");
 
 		return result;
 	}
@@ -109,9 +109,11 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 		Date moment;
-
+		
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
+		this.infoRepository.save(entity.getInfoId());
+		
 		this.repository.save(entity);
 
 		
