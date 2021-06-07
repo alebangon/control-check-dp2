@@ -11,4 +11,6 @@ public interface AnonymousInformationRepository extends AbstractRepository {
 
 	@Query("select i from Info i")
 	Info findOne();
+	@Query("select i from Info i where i.money.currency=?1")
+	Info findByCurrency(String currency);
 }
