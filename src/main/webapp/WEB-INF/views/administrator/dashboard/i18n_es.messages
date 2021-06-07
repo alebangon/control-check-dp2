@@ -25,3 +25,7 @@ administrator.dashboard.form.label.deviation-task-workloads = Desviación en la 
 administrator.dashboard.form.label.minimum-task-workloads = Mínima carga de trabajo en las tareas
 administrator.dashboard.form.label.maximum-task-workloads = Máxima carga de trabajo en las tareas
 administrator.dashboard.form.title.application-statuses = Estado de las solicitudes
+administrator.dashboard.form.label.averageUSD = Media de cantidades de USD
+administrator.dashboard.form.label.deviationUSD = Desviación estándar de USD
+administrator.dashboard.form.label.averageEUR = Media de cantidades de EUR
+administrator.dashboard.form.label.deviationEUR = Desviación estándar de EUR

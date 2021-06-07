@@ -42,4 +42,9 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double maximumTaskExecutionPeriods();
 	@Query ("select t from Task t")
 	List<Task> allTasks();
+	
+	@Query ("select stddev(i.money.amount) from Info i where i.money.currency=?1")
+	Double deviationShoutCurrency(String currency);
+	@Query("select avg(i.money.amount) from Info i where i.money.currency=?1")
+	Double averageShoutCurrency(String currency);
 }

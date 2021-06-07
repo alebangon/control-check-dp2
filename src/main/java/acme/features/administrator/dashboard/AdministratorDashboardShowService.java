@@ -48,7 +48,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads");
+		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads", "deviationEUR", "deviationUSD", "averageEUR","averageUSD");
 	}
 
 	@Override
@@ -68,7 +68,11 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		Double						deviationTaskWorloads;
 		Double						minimumTaskWorloads;
 		Double						maximumTaskWorloads;
-
+		Double						deviationEUR;
+		Double						deviationUSD;
+		Double						averageEUR;
+		Double						averageUSD;
+		
 		final List<Task> totalTasks = this.repository.allTasks();
 		averageTaskWorloads = this.checkValue(this.calculateWorkloadAverage(totalTasks));
 		deviationTaskWorloads = this.checkValue(this.calculateWorkloadDeviation(totalTasks));
@@ -82,6 +86,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		maximumTaskExecutionPeriods = this.checkValue(this.repository.maximumTaskExecutionPeriods());
 		minimumTaskWorloads = this.checkValue(this.takeMinimum(totalTasks));
 		maximumTaskWorloads = this.checkValue(this.takeMaximum(totalTasks));
+		deviationEUR = this.checkValue(this.repository.deviationShoutCurrency("EUR"));
+		deviationUSD = this.checkValue(this.repository.deviationShoutCurrency("USD"));
+		averageEUR = this.checkValue(this.repository.averageShoutCurrency("EUR"));
+		averageUSD = this.checkValue(this.repository.averageShoutCurrency("USD"));
 		
 		result = new Dashboard();
 		result.setTotalNumberOfPublicTasks(totalNumberOfPublicTasks);
@@ -96,6 +104,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setDeviationTaskWorloads(deviationTaskWorloads);
 		result.setMinimumTaskWorloads(minimumTaskWorloads);
 		result.setMaximumTaskWorloads(maximumTaskWorloads);
+		result.setDeviationEUR(deviationEUR);
+		result.setDeviationUSD(deviationUSD);
+		result.setAverageEUR(averageEUR);
+		result.setAverageUSD(averageUSD);
 		return result;
 	}
 
