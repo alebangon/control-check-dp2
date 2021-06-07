@@ -29,3 +29,4 @@ administrator.dashboard.form.label.averageUSD = average amount of USD
 administrator.dashboard.form.label.deviationUSD = standar deviation of USD
 administrator.dashboard.form.label.averageEUR = average amount of EUR
 administrator.dashboard.form.label.deviationEUR = standar deviation of EUR
+administrator.dashboard.form.label.ratioFlagged = Ratio of flagged shouts		

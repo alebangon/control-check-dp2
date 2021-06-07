@@ -43,6 +43,7 @@ public class Dashboard implements Serializable {
 	Double						deviationUSD;
 	Double						averageEUR;
 	Double						averageUSD;
+	Double						flaggedRatio;
 
 
 	// Derived attributes -----------------------------------------------------

@@ -48,7 +48,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads", "deviationEUR", "deviationUSD", "averageEUR","averageUSD");
+		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads", "deviationEUR", "deviationUSD", "averageEUR","averageUSD", "flaggedRatio");
 	}
 
 	@Override
@@ -72,6 +72,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		Double						deviationUSD;
 		Double						averageEUR;
 		Double						averageUSD;
+		Double						flaggedRatio;
 		
 		final List<Task> totalTasks = this.repository.allTasks();
 		averageTaskWorloads = this.checkValue(this.calculateWorkloadAverage(totalTasks));
@@ -90,6 +91,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		deviationUSD = this.checkValue(this.repository.deviationShoutCurrency("USD"));
 		averageEUR = this.checkValue(this.repository.averageShoutCurrency("EUR"));
 		averageUSD = this.checkValue(this.repository.averageShoutCurrency("USD"));
+		flaggedRatio = ((double)this.repository.allFlaggedShouts().size()/(this.repository.allShouts().size()));
 		
 		result = new Dashboard();
 		result.setTotalNumberOfPublicTasks(totalNumberOfPublicTasks);
@@ -108,6 +110,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setDeviationUSD(deviationUSD);
 		result.setAverageEUR(averageEUR);
 		result.setAverageUSD(averageUSD);
+		result.setFlaggedRatio(flaggedRatio);
 		return result;
 	}
 

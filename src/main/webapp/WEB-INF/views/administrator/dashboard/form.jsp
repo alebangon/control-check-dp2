@@ -151,4 +151,12 @@
 			<acme:print value="${averageUSD}"/>
 		</td>
 	</tr>
+		<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.ratioFlagged"/>
+		</th>
+		<td>
+			<acme:print value="${flaggedRatio}"/>
+		</td>
+	</tr>
 </table>

@@ -29,3 +29,4 @@ administrator.dashboard.form.label.averageUSD = Media de cantidades de USD
 administrator.dashboard.form.label.deviationUSD = Desviación estándar de USD
 administrator.dashboard.form.label.averageEUR = Media de cantidades de EUR
 administrator.dashboard.form.label.deviationEUR = Desviación estándar de EUR
+administrator.dashboard.form.label.ratioFlagged = Razón de gritos con flag activado				

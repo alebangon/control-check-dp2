@@ -17,6 +17,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.shouts.Shout;
 import acme.entities.tasks.Task;
 import acme.framework.repositories.AbstractRepository;
 
@@ -42,9 +43,15 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double maximumTaskExecutionPeriods();
 	@Query ("select t from Task t")
 	List<Task> allTasks();
+	@Query ("select s from Shout s")
+	List<Shout> allShouts();
+	@Query ("select s from Shout s where s.infoId.flag = 1")
+	List<Shout> allFlaggedShouts();
 	
 	@Query ("select stddev(i.money.amount) from Info i where i.money.currency=?1")
 	Double deviationShoutCurrency(String currency);
 	@Query("select avg(i.money.amount) from Info i where i.money.currency=?1")
 	Double averageShoutCurrency(String currency);
+
+	
 }
