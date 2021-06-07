@@ -101,7 +101,10 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 				}
 			}
 			errors.state(request,!containsSpam, "spam", "acme.validation.spam");
-
+			
+		final boolean validCurrency = (entity.getInfoId().getMoney().getCurrency().equals("EUR"))||(entity.getInfoId().getMoney().getCurrency().equals("USD"));
+			errors.state(request,validCurrency, "currency", "acme.validation.currency");
+		
 	}
 
 	@Override
