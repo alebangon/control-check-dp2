@@ -19,9 +19,9 @@
 	<acme:form-textbox code="anonymous.shout.form.label.author" path="author" placeholder="Author"/>
 	<acme:form-textarea code="anonymous.shout.form.label.text" path="text" placeholder="Text"/>
 	<acme:form-textbox code="anonymous.shout.form.label.info" path="info" placeholder="https:\\www.google.es"/>
-	<acme:form-textbox code="anonymous.shout.form.label.information" path="infoId.information" placeholder="info"/>
 	<acme:form-money code="anonymous.shout.form.label.money" path="infoId.money"/>
-
+	<acme:form-moment code="anonymous.shout.form.label.deadline" path="infoId.deadline"/>
+	
 	<acme:form-checkbox code="anonymous.shout.form.label.flag" path="infoId.flag"/>
 	
 	<acme:form-submit code="anonymous.shout.form.button.create" action="/anonymous/shout/create"/>

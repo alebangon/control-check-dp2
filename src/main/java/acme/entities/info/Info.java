@@ -7,8 +7,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 import acme.framework.datatypes.Money;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
@@ -22,12 +20,12 @@ public class Info extends DomainEntity {
 
 	protected static final long	serialVersionUID	= 1L;
 	
-	@Length(min=5,max=250)
+
 	@NotBlank
-	protected String			information;
+	protected String			symbol;
 	
 	@NotNull
-	protected Date 				moment;
+	protected Date 				deadline;
 	
 	@Valid
 	protected Money				money;

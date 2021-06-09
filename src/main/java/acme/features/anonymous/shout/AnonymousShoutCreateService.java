@@ -12,6 +12,7 @@
 
 package acme.features.anonymous.shout;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "author", "text", "info", "infoId.information", "infoId.money.currency", "infoId.money.amount", "infoId.moment", "infoId.flag" );
+		request.unbind(entity, model, "author", "text", "info", "infoId.symbol", "infoId.money.currency", "infoId.money.amount", "infoId.deadline", "infoId.flag" );
 	}
 
 	@Override
@@ -115,7 +116,28 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
-		entity.getInfoId().setMoment(moment);
+		
+		final String id = String.valueOf(entity.getId());
+		String symbol;
+		final LocalDate date = LocalDate.now();
+		final int year = date.getYear()-2000;
+		String month = String.valueOf(date.getMonthValue());
+		if (month.length()==1) {
+			month = "0"+month;
+		}
+		String day = String.valueOf(date.getDayOfMonth());
+		if(day.length()==1) {
+			day = "0"+day;
+		}
+		if(id.length()==1) {
+			symbol = "ww" + id + "-" + String.valueOf(year) + month + day + "ww";
+		}else if(id.length()==2) {
+			symbol = "w" + id + "-" + String.valueOf(year) + month + day + "ww";
+		}else {
+			symbol = "" + id + "-"+ String.valueOf(year) + month + day + "ww";
+		}
+		
+		entity.getInfoId().setSymbol(symbol);
 		this.infoRepository.save(entity.getInfoId());
 		
 		this.repository.save(entity);
