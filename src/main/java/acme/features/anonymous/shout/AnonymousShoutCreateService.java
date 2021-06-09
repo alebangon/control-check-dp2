@@ -105,7 +105,9 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 			
 		final boolean validCurrency = (entity.getInfoId().getMoney().getCurrency().equals("EUR"))||(entity.getInfoId().getMoney().getCurrency().equals("USD"));
 			errors.state(request,validCurrency, "currency", "acme.validation.currency");
-		
+		final Date now = new Date(System.currentTimeMillis()+ 7 * 24 * 3600 * 1000);
+		final boolean isDateValid= entity.getInfoId().getDeadline().after(now);
+		errors.state(request, isDateValid, "deadline", "acme.validation.date");
 	}
 
 	@Override
